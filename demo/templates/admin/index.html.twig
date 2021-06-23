@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title 'acceuille' %}
+{% block body %}
+ <div class = "container text-center"> 
+    <h1> Bienvenue sur la page d'acceuil </h1>
+ </div>
+
+ <div class = "container text-center ">
+    <h2> Dernieres Annonces </h2>
+    <div class= "row flex"> 
+      {% for annonces in annonces %}
+      
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
