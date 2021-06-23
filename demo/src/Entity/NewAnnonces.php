@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\NewAnnoncesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
 
 /**
  * @ORM\Entity(repositoryClass=NewAnnoncesRepository::class)
@@ -58,6 +59,10 @@ class NewAnnonces
 
         return $this;
     }
+    /*public function  getSlug() 
+    {
+        return $slugify = (new Slugify()) ->$slugify->slugify($this->title); 
+    }*/
 
     public function getDescription(): ?string
     {

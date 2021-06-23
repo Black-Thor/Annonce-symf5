@@ -41,4 +41,20 @@ class annoncesController extends AbstractController
         ]) ;
 
     }
+    /**
+     * @Route ("/annonces/{slug}--{id}" , name=="annonces.show" , requirements = {"slug" : "[a-z0-9\-]*"})
+     * @return Response
+     */
+    
+     /*
+    public  function show($slug , $id) : Response 
+    {
+        $annonces= $this->repository->find($id) ; 
+        return $this->render('annonces/show.html.twig' , [
+            'annonces' => $annonces,
+            'current_menu' => 'properties'
+        ]); 
+        
+    }
+    */
 }
