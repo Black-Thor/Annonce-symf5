@@ -59,10 +59,10 @@ class NewAnnonces
 
         return $this;
     }
-    /*public function  getSlug() 
+    public function  getSLug()
     {
-        return $slugify = (new Slugify()) ->$slugify->slugify($this->title); 
-    }*/
+        return ($slugify = (new Slugify())->slugify($this->title));
+    }
 
     public function getDescription(): ?string
     {
