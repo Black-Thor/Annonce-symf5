@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace  App\Controller\admin;
 
 use App\Entity\NewAnnonces;
@@ -10,39 +10,30 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class adminAnnoncesController extends AbstractController
 {
-   
-    private $repository ;
-
-    /**
-     * adminAnnoncesController constructor.
-     * @param NewAnnoncesRepository $repository
-     */
     public function __construct(NewAnnoncesRepository $repository, EntityManagerInterface $em)
     {
-        $this-> repository = $repository ;
-        $this-> em = $em ;
-        
-        
+        $this->repository = $repository ;
+        $this->em = $em ;
     }
 
     /**
-     *  @return Response
      * @Route("/admin" , name="admin.annonces.index")
-     *
      */
     public function index(): Response
     {
-      $annonces =  $this->repository->findAll(); 
+      $annonces =  $this->repository->findAll();
       return $this->render('admin/index.html.twig', compact('annonces')) ;
     }
 
     /**
-     * @Route ("/admin" , name ="admin.annonces.new)
+    * @Route ("/admin" , name = "admin.new.index")
      */
     public function new(Request $request)
     {
@@ -61,6 +52,8 @@ class adminAnnoncesController extends AbstractController
             'form' => $form -> createView()
         ] );
     }
+
+
     /**
      *  @return Response
      * @Route("/admin/{id}" , name="admin.annonces.edit")
@@ -79,4 +72,5 @@ class adminAnnoncesController extends AbstractController
            'form' => $form -> createView()
         ] );
     }
+
 }
