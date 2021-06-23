@@ -1,17 +1,27 @@
 {% extends "base.html.twig" %}
 
-{% block title 'acceuille' %}
-{% block body %}
- <div class = "container text-center"> 
-    <h1> Bienvenue sur la page d'acceuil </h1>
- </div>
+{% block title 'Admin' %}
 
- <div class = "container text-center ">
-    <h2> Dernieres Annonces </h2>
-    <div class= "row flex"> 
-      {% for annonces in annonces %}
-      
-      {% endfor %}
+{% block body %}
+    <div class = "container mt-4 text-center">
+        <h1> Admin </h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th> Titre </th>
+                <th> Description </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for annonces in annonces %}
+            <tr>
+                <td> {{ annonces.titre }}</td>-
+                <td>
+                    <a href="{{path('admin.annonces.edit' , {id:property.id}) }}" class="btn btn-default"> Editer </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
-  </div>
 {% endblock %}
