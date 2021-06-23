@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+
+{% block body %}
+
+    <div class="container">
+        {{ form_start(form) }}
+        {{ form_rest(form) }} <!--form_rest si bug -->
+        <button class="btn btn-primary "> {{ button | default('Enregistrer') }} </button>
+        {{ form_end(form) }}
+    </div>
+
+
+{% endblock %}

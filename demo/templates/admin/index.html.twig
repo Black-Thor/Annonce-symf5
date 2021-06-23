@@ -10,6 +10,7 @@
             <tr>
                 <th> Titre </th>
                 <th> Description </th>
+                <th> Action </th>
             </tr>
             </thead>
             <tbody>
@@ -18,12 +19,21 @@
                 <td> {{ annonces.title }}</td>-
                 <td>
                     {{ annonces.description }}
+                </td>
+                <td>
                     <a href="{{path('admin.annonces.edit' , {id:annonces.id}) }}" class="btn btn-primary"> Editer </a>
+                    <a href="{{path('admin.annonces.delete' , {id:annonces.id}) }}" class="btn btn-danger"> Supprimer</a>
+
+
                 </td>
 
             </tr>
             {% endfor %}
             </tbody>
         </table>
+        
+        <div class="text-end">
+            <a href="{{ path('admin.new') }}" class="btn btn-primary"> Nouvelle annonces</a>
+        </div>
     </div>
 {% endblock %}

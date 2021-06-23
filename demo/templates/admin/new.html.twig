@@ -6,8 +6,15 @@
 
 {% block body %}
     <div class="containe mt-4">
-        <h1 class="text-center"> ajouter une annonces  </h1>
-
+        <h1 class="text-center"> ajoutez le bien </h1>
+        <div class="containe mt-4">
+            <div class="container">
+                {{ form_start(form) }}
+                {{ form_rest(form) }}
+                <button class="btn btn-primary "> ajoutez </button>
+                {{ form_end(form) }}
+            </div>
+        </div>
     </div>
 
 

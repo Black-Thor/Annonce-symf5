@@ -33,11 +33,13 @@ class adminAnnoncesController extends AbstractController
     }
 
     /**
-    * @Route ("/admin" , name = "admin.new.index")
+    * @Route ("/admin/new" , name = "admin.new")
+     * {{# include ('admin/_form.html.twig' , {button: 'Ajouter' }) #}} pour charger la form retirer pour bug
      */
     public function new(Request $request)
     {
-        $annonces = new annonces() ;
+
+        $annonces = new NewAnnonces() ;
         $form = $this->createForm(AnnoncesType::class, $annonces) ;
 
         $form->handleRequest($request) ;
@@ -56,7 +58,7 @@ class adminAnnoncesController extends AbstractController
 
     /**
      *  @return Response
-     * @Route("/admin/{id}" , name="admin.annonces.edit")
+     * @Route("/admin/{id}" , name="admin.annonces.edit",  methods="GET | POST"))
      *
      */
     public function edit(NewAnnonces $annonces, Request $request)
@@ -72,5 +74,30 @@ class adminAnnoncesController extends AbstractController
            'form' => $form -> createView()
         ] );
     }
+    /**
+     *
+     * @Route("/admin/del-{id}" , name="admin.annonces.delete",  ))
+     */
 
+    /* CRUD symfo 35:
+    methods="delete"
+     * <form method="post" {{ path('admin.annonces.delete' , {id: annonces.id} ) }}" style="display: inline-block">
+                        <input type="hidden" name="_method" value="DELETE">
+                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ annonces.id) }}">
+                        <button class="btn btn-danger"> Supprimer </button>
+                    </form>
+    */
+    public function delete (NewAnnonces $annonces)
+    {
+       /* ,Request $request
+       if($this->isCsrfTokenValid('delete', $del_annonces->getId(),$del_annonces->get('_token')))
+        {
+             return new Response('suppresion') ;
+
+        }*/
+
+        $this->em->remove($annonces);
+        $this->em->flush() ;
+       return $this->redirectToRoute('admin.annonces.index') ;
+    }
 }
