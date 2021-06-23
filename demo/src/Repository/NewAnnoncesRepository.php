@@ -18,6 +18,19 @@ class NewAnnoncesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, NewAnnonces::class);
     }
+    
+    /**
+     * findVisible
+     *
+     * @return void
+     */
+    
+    public function findVisible(){
+        return $this -> createQueryBuilder('p')
+                     ->where() 
+                     ->getQuery()
+                     ->getResult() ;  
+    }
 
     // /**
     //  * @return NewAnnonces[] Returns an array of NewAnnonces objects
