@@ -1,3 +1,12 @@
+home : 
+  path: /
+  controller: App\Controller\HomeController::index
+
+Annonces : 
+  path: /Annonces
+  controller: App\Controller\annoncesController::index
+
+
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
