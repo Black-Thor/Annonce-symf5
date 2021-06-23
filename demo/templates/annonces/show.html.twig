@@ -1,9 +1,18 @@
 {% extends "base.html.twig" %}
 
-{% block title 'Annonces' %}
+{% block title annonces.title %}
 
 {% block body %}
-<div class="container">
-  <h1> {{annonces.title}}</h1>
+<div class="container mt-2 text-center">
+  <!-- <h1> {{annonces.title}}</h1>-->
+
+  <div class="text-center ">
+    <h1> {{ annonces.title }}</h1>
+
+    <div class="text-danger">
+      <h3 > {{ annonces.telephone }}</h3>
+    </div>
+  <p>  {{ annonces.description |nl2br }}</p>
+  </div>
 </div>
 {% endblock %}

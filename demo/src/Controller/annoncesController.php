@@ -46,8 +46,14 @@ class annoncesController extends AbstractController
      * @return Response
      */
 
-    public  function show(NewAnnonces $annonces) : Response
+    public  function show(NewAnnonces $annonces, string $slug) : Response
     {
+        if ($annonces->getSLug() !== $slug) {
+         return   $this->redirectToRoute('annonces.show' , [
+                'id' => $annonces -> getId() ,
+                'slug' => $annonces -> getSLug()
+            ],301) ;
+        }
 
         return $this->render('annonces/show.html.twig' , [
             'annonces' => $annonces,
