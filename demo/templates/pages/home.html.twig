@@ -8,7 +8,7 @@
 
  <div class = "container text-center ">
     <h2> Dernieres Annonces </h2>
-    <div class= "row flex"> 
+    <div class= "row flex">
       {% for annonces in annonces %}
       <div class= "col-3" >
          <div class="card"> 
@@ -18,9 +18,9 @@
                </h5>
                <p class="card-text"> {{annonces.description}} ({{annonces.codePostal}})</p>
                <div class = "text-danger" style="font-weight: bold ; font-size:2rem ; "> {{annonces.telephone}} </div>
-            <div>
-         <div>
-      <div>
+            </div>
+         </div>
+      </div>
       {% endfor %}
     </div>
   </div>
