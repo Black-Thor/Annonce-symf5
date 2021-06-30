@@ -23,6 +23,7 @@ class UserType extends AbstractType
                     'User' => 'ROLE_USER',
                     'Partner' => 'ROLE_PARTNER',
                     'Admin' => 'ROLE_ADMIN',
+
                 ],
             ])
             ->add('password')
