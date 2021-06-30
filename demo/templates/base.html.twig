@@ -23,27 +23,53 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if app.user  %}
+
         <li class="nav-item">
-          <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %} active {% endif %}" href="{{path('Annonces')}}">Nos annonces</a>
+          <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %} active {% endif %}" href="{{path('Annonces')}}">Mes annonces</a>
         </li>
+          {% endif %}
+          {% if is_granted('ROLE_ADMIN') %}
           <li class="li nav-item">
               <a class="nav-link" href="{{path('user_index')}}">
                   User
               </a>
           </li>
+          {% endif %}
 
-          <li class="li nav-item">
-              <a class="nav-link" href="{{path('app_login')}}">
-                  Login
-              </a>
-          </li>
+          {% if app.user %}
           <li class="li nav-item">
               <a class="nav-link" href="{{path('app_logout')}}">
                   Logout
               </a>
           </li>
-        
+          {% else %}
+          <li class="li nav-item">
+              <a class="nav-link" href="{{path('app_login')}}">
+                  Login
+              </a>
+          </li>
+
+          <li class="li nav-item">
+              <a class="nav-link" href="{{ path("user_new") }}">
+                  Inscription
+              </a>
+          </li>
+          {% endif %}
+
+          {% if is_granted('ROLE_ADMIN') %}
+          <li class="li nav-item">
+              <a class="nav-link" href="{{path('admin.annonces.index')}}">
+                  admin
+              </a>
+          </li>
+          {% endif %}
+
+      </ul>
     </div>
+      {% if is_granted('ROLE_USER') %}
+          {{ app.user.username}}
+      {% endif %}
   </div>
 </nav>
         {% block body %}{% endblock %}
