@@ -19,6 +19,7 @@ class AnnoncesType extends AbstractType
             ->add('codePostal',null, [
         'label'=>'Code Postal'])
             ->add('date')
+            ->add('creator')
         ;
     }
 

@@ -1,12 +1,16 @@
 <?php 
 namespace App\Controller ; 
 
-use App\Entity\NewAnnonces ; 
+use App\Entity\NewAnnonces ;
+use App\Form\AnnoncesType;
 use App\Repository\NewAnnoncesRepository ;
+use Doctrine\ORM\EntityManagerInterface;
+use http\Env\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 /**
  * Class annoncesController
@@ -25,9 +29,11 @@ class annoncesController extends AbstractController
      * annoncesController constructor.
      * @param NewAnnoncesRepository $repository
      */
-    public function __construct(NewAnnoncesRepository $repository)
+    public function __construct(NewAnnoncesRepository $repository ,  EntityManagerInterface $em)
     {
-        $this -> repository = $repository ; 
+        $this -> repository = $repository ;
+        $this->em = $em ;
+
     }
     /**
      * @return Response
@@ -35,7 +41,7 @@ class annoncesController extends AbstractController
      */
     public function index() : Response
     {
-        $recup_annonces = $this-> repository -> findAll();
+        $recupAnnonces = $this->repository->findAll();
         return $this->render('annonces/home.html.twig', [
             'current_menu' => 'properties'
         ]) ;
@@ -58,8 +64,29 @@ class annoncesController extends AbstractController
         return $this->render('annonces/show.html.twig' , [
             'annonces' => $annonces,
             'current_menu' => 'properties'
-        ]); 
+        ]);
         
+    }
+    /**
+     * @Route ("/annonces/new" , name = "annonces.new")
+     */
+    public function new(\Symfony\Component\HttpFoundation\Request $request)
+    {
+
+        $annonces = new NewAnnonces() ;
+        $form = $this->createForm(AnnoncesType::class, $annonces) ;
+
+        $form->handleRequest($request) ;
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this ->em->persist($annonces);
+            $this->em->flush();
+            return $this->redirectToRoute('annonces.index') ;
+        }
+        return $this->render('admin/new.html.twig', [
+            'annonces' => $annonces ,
+            'form' => $form -> createView()
+        ] );
     }
 
 }

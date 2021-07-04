@@ -43,6 +43,11 @@ class NewAnnonces
      */
     private $date;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $creator;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -108,6 +113,18 @@ class NewAnnonces
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getCreator(): ?string
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(?string $creator): self
+    {
+        $this->creator = $creator;
 
         return $this;
     }
