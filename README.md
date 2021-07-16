@@ -1,6 +1,6 @@
 ## SITE ANNONCES 
 
-Site crée pour apprendre le framework Symfony 5, et pour un entretiens 
+Site crée pour m'initier au framework Symfony 5
 
 ## Exigence
 - Il faut pouvoir s’inscrire et avoir un compte (nom, prénom, email, téléphone)
